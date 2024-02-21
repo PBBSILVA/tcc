@@ -1,7 +1,6 @@
 <?php
   session_start();
-    require("config.php");  
-  
+    require("config.php");    
   if(!isset($_SESSION["id_usuario_logado"])){
     header("Location: login.php");
     exit;

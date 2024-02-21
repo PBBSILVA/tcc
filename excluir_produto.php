@@ -1,7 +1,7 @@
 <?php
 session_start();
 require("config.php");
-// o usuĂĄrio estĂĄ logado?
+
 if(!isset($_SESSION["id_usuario_logado"])){
   header("Location: login.php");
   exit;
