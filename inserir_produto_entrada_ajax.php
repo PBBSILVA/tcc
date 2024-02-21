@@ -1,22 +1,23 @@
 <?php
 session_start();
   require("config.php");
-  // o usuário está logado?
+  // o usuï¿½rio estï¿½ logado?
   if(!isset($_SESSION["id_usuario_logado"])){
     header("Location: login.php");
     exit;
   }
+  
 
   header("Cache-Control: no-cache, must-revalidate");
   header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
   header("Content-Type: text/xml");
 
- // tem permissão para cadastrar?
+ // tem permissï¿½o para cadastrar?
   if(!Permissao::podeCadastrar($_SESSION["nivel_acesso"])){
 	header("Location: erro_permissao.php");
     exit;  
   }
-  // fim permissão para cadastrar
+  // fim permissï¿½o para cadastrar
 
 $id_usuario_logado = $_SESSION["id_usuario_logado"];
 $id_entrada = tratar_entrada(utf8_decode(trim($_POST["id_entrada"])));
