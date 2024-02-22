@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 session_start();
   require("config.php");
   // o usu�rio est� logado?
@@ -20,10 +21,10 @@ session_start();
   // fim permiss�o para cadastrar
 
 $id_usuario_logado = $_SESSION["id_usuario_logado"];
-$id_entrada = tratar_entrada(utf8_decode(trim($_POST["id_entrada"])));
-$id_produto = tratar_entrada(utf8_decode(trim($_POST["id_produto"])));
-$quantidade = tratar_entrada(utf8_decode(trim($_POST["quantidade"])));
-$preco_unitario = tratar_entrada(utf8_decode(trim($_POST["preco_unitario"])));
+$id_entrada = tratar_entrada(utf8_encode(trim($_POST["id_entrada"])));
+$id_produto = tratar_entrada(utf8_encode(trim($_POST["id_produto"])));
+$quantidade = tratar_entrada(utf8_encode(trim($_POST["quantidade"])));
+$preco_unitario = tratar_entrada(utf8_encode(trim($_POST["preco_unitario"])));
 $total = $quantidade * $preco_unitario;
 
   // id	id_produto	id_entrada	valor_unitario	quantidade

@@ -57,8 +57,8 @@ if(!Permissao::podeExcluir($_SESSION["nivel_acesso"])){
 // fim permissão para excluir
 
 // id do produto a ser excluído
-$produto = tratar_entrada(utf8_decode(trim($_GET["produto"])));
-$nome_produto_exclusao = tratar_entrada(utf8_decode(trim($_GET["nome_produto"])));
+$produto = tratar_entrada(imap_utf8(trim($_GET["produto"])));
+$nome_produto_exclusao = tratar_entrada(imap_utf8(trim($_GET["nome_produto"])));
 // url para voltar depois da exclusao
 $url_volta = tratar_entrada($_GET["volta"]);
 

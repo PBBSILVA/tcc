@@ -1,7 +1,7 @@
 <?php
 session_start();
   require("config.php");
-  // o usuário está logado?
+  // o usuï¿½rio estï¿½ logado?
   if(!isset($_SESSION["id_usuario_logado"])){
     header("Location: login.php");
     exit;
@@ -11,20 +11,20 @@ session_start();
   header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
   header("Content-Type: text/xml");
 
- // tem permissão para excluir?
+ // tem permissï¿½o para excluir?
   if(!Permissao::podeExcluir($_SESSION["nivel_acesso"])){
 	header("Location: erro_permissao.php");
     exit;  
   }
-  // fim permissão para cadastrar
+  // fim permissï¿½o para cadastrar
 
 $id_usuario_logado = $_SESSION["id_usuario_logado"];
-$id_item_saida = tratar_entrada(utf8_decode(trim($_POST["id_item_saida"])));
-$id_saida = tratar_entrada(utf8_decode(trim($_POST["id_saida"])));
-$id_produto = tratar_entrada(utf8_decode(trim($_POST["id_produto"])));
-$quantidade = tratar_entrada(utf8_decode(trim($_POST["quantidade"])));
-$preco_unitario = tratar_entrada(utf8_decode(trim($_POST["preco_unitario"])));
-$preco_total = tratar_entrada(utf8_decode(trim($_POST["preco_total"])));
+$id_item_saida = tratar_entrada(imap_utf8(trim($_POST["id_item_saida"])));
+$id_saida = tratar_entrada(imap_utf8(trim($_POST["id_saida"])));
+$id_produto = tratar_entrada(imap_utf8(trim($_POST["id_produto"])));
+$quantidade = tratar_entrada(imap_utf8(trim($_POST["quantidade"])));
+$preco_unitario = tratar_entrada(imap_utf8(trim($_POST["preco_unitario"])));
+$preco_total = tratar_entrada(imap_utf8(trim($_POST["preco_total"])));
 
   $result = mysqli_query($conexao, "DELETE FROM itens_saida WHERE id = '$id_item_saida'");
 	 

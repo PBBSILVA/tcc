@@ -1,6 +1,10 @@
+
+<meta charset="UTF-8" />
 <?php
+header('Content-Type: text/html; charset=UTF-8');
   session_start();
   require("config.php");
+  
   // o usuÃ¡rio estÃ¡ logado?
   if(!isset($_SESSION["id_usuario_logado"])){
     header("Location: login.php");
@@ -14,14 +18,14 @@
     DATE_FORMAT(data_cadastro, '%d/%m/%Y - %H:%i') as data_cadastro, usuario_cadastro from produtos WHERE id = '$id_produto'");
   if($result){
 	while($detalhes = mysqli_fetch_array($result)){
-	   $nome = utf8_encode($detalhes["nome"]);
-	   $referencia = utf8_encode($detalhes["referencia"]);
+	   $nome = imap_utf8($detalhes["nome"]);
+	   $referencia = imap_utf8($detalhes["referencia"]);
 	   $foto = $detalhes["foto"];
 	   $categoria = $detalhes["categoria"];
 	   $unidade = $detalhes["unidade"];
 	   $estoque = $detalhes["estoque"];
 	   $estoque_min = $detalhes["estoque_min"];
-	   $descricao = utf8_encode($detalhes["descricao"]);
+	   $descricao = imap_utf8($detalhes["descricao"]);
 	   $data_cadastro = $detalhes["data_cadastro"];
 	   $preco_compra = $detalhes["preco_compra"];
 	   $preco_venda = $detalhes["preco_venda"];
@@ -250,10 +254,10 @@ button:focus {
                                                if($result){
 	                                              while($detalhes = mysqli_fetch_array($result)){
 	                                                 if($categoria == $detalhes["id"]){
-													   echo '<option selected value="' . $detalhes["id"] . '">' . utf8_encode($detalhes["nome"]) . '</option>';
+													   echo '<option selected value="' . $detalhes["id"] . '">' . imap_utf8($detalhes["nome"]) . '</option>';
 												     }
 													 else{
-													   echo '<option value="' . $detalhes["id"] . '">' . utf8_encode($detalhes["nome"]) . '</option>';
+													   echo '<option value="' . $detalhes["id"] . '">' . imap_utf8($detalhes["nome"]) . '</option>';
 													 }
 	                                              }
                                                }
@@ -529,9 +533,9 @@ $(document).ready(function(){
 		});
 	});
 	
-	// trata a formataçao dos campos
+	// trata a formataï¿½ao dos campos
 	$('#preco_venda').mask('000.000.000.000.000,00', {reverse: true});
-	// fim formataçao dos campos
+	// fim formataï¿½ao dos campos
 	
 });
 
